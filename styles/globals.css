@@ -1,0 +1,152 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* If you add @font-face, always use font-display: swap to avoid invisible text and LCP delay. */
+
+/* Swiper pagination - rose palette */
+.swiper-pagination-bullet-active {
+  background-color: #7b5d5d !important;
+}
+.swiper-pagination-bullet {
+  background-color: rgba(123, 93, 93, 0.3) !important;
+}
+
+html {
+  min-height: 100%;
+}
+
+body {
+  font-family: var(--font-jost), system-ui, sans-serif;
+  background-color: #fdfbf9;
+  color: #3e3232;
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  position: relative;
+}
+
+#__next {
+  min-height: 100%;
+}
+
+/* Scroll gallery - custom '+' cursor on images */
+.cursor-gallery-plus {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='12' y1='5' x2='12' y2='19'/%3E%3Cline x1='5' y1='12' x2='19' y2='12'/%3E%3C/svg%3E") 12 12, crosshair;
+}
+
+/* Prevent any element from causing horizontal overflow */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img, video, iframe, svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Homepage service cards – desktop hover zoom on image only */
+@media (hover: hover) and (pointer: fine) {
+  .homepage-card-image {
+    overflow: hidden;
+  }
+
+  .homepage-card-image img {
+    transition: transform 0.45s ease-out;
+    transform-origin: center center;
+  }
+
+  .homepage-card-image:hover img {
+    transform: scale(1.08);
+  }
+}
+
+/* Shimmer animation for ambient effect */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+/* Toast shake animation */
+@keyframes toast-shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-4px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(4px);
+  }
+}
+
+.animate-shake {
+  animation: toast-shake 0.5s ease-in-out;
+}
+
+.shake-border {
+  border-color: rgba(239, 68, 68, 0.6) !important;
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.4), 0 0 40px rgba(239, 68, 68, 0.2) !important;
+}
+
+/* Toast enter/leave animations */
+.animate-enter {
+  animation: toast-enter 0.35s ease-out;
+}
+
+.animate-leave {
+  animation: toast-leave 0.35s ease-in forwards;
+}
+
+@keyframes toast-enter {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes toast-leave {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+}
+
+/* --- MOBILE PERFORMANCE MODE FOR HOMEPAGE --- */
+@media (max-width: 767px) {
+  .mobile-no-blur {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: none !important;
+    background: rgba(255, 255, 255, 0.12) !important;
+  }
+
+  .mobile-no-anim {
+    transform: none !important;
+    opacity: 1 !important;
+    transition: none !important;
+  }
+
+  .mobile-no-hover * {
+    transition: none !important;
+    box-shadow: none !important;
+  }
+}

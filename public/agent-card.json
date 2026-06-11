@@ -1,0 +1,18 @@
+{
+  "id": "paulapango-public-agent",
+  "name": "Paula Pango Public Content Agent",
+  "version": "1.0.0",
+  "organization": "Paula Pango",
+  "homepage": "https://www.paulapango.com",
+  "contact": "mailto:info@paulapango.com",
+  "capabilities": [
+    "artwork-discovery",
+    "locale-aware-content",
+    "canonical-aware-indexing"
+  ],
+  "policies": {
+    "useCanonical": true,
+    "respectHreflang": true,
+    "avoidPrivateRoutes": true
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "locales": ["en", "lt"],
+  "defaultLocale": "en",
+  "pages": {
+    "*": ["common"]
+  },
+  "loader": false,
+  "logBuild": false,
+  "localeDetection": false
+}

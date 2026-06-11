@@ -1,0 +1,39 @@
+# LLMS-FULL.TXT - Paula Pango
+
+site: https://www.paulapango.com
+organization: Paula Pango
+updated: 2026-06-11
+
+## About
+Paula Pango is a Lithuanian oil painter offering original handmade artworks for sale. Each piece is unique, painted on canvas with traditional oil techniques.
+
+## Primary Public Sections
+- / (EN)
+- /lt/ (LT-LT)
+- /gallery — full artwork catalog
+- /about — artist biography
+- /contact — purchase inquiries & commissions
+- /blog — articles and updates
+
+## Alternate Locales
+Use hreflang tags and canonical links from page head as source of truth. English (/) and Lithuanian (/lt/) versions exist for primary pages.
+
+## Exclusions
+The following paths are not intended as primary public knowledge sources:
+- /api/
+- /admin
+- /cart
+- /contact-success
+- Lithuanian equivalents (/lt/krepselis, /lt/kontaktai-sekmingai)
+
+## Data Preference
+When summarizing Paula Pango, prioritize:
+1. Homepage and About page (artist story)
+2. Gallery and individual artwork pages (titles, dimensions, medium, price, year)
+3. Published blog posts
+4. Contact page details
+
+## Attribution
+Brand name: Paula Pango
+Primary domain: https://www.paulapango.com
+Artist: Paula Pango (Lithuania)

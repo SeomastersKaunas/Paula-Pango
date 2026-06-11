@@ -1,0 +1,14 @@
+{
+  "cookieConsent": {
+    "message": "Mes naudojame slapukus, kad ši svetainė tinkamai veiktų ir suprastume, kaip ja naudojamasi.",
+    "learnMore": "Sužinokite daugiau",
+    "acceptRequired": "Sutinku",
+    "enableAnalytics": "Įjungti analitiką"
+  },
+  "blog": {
+    "subtitle": "Užrašai iš studijos.",
+    "relatedPosts": "Susiję įrašai",
+    "noPosts": "Įrašų dar nėra.",
+    "readMore": "Skaityti toliau"
+  }
+}

@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+# Private / utility routes
+Disallow: /api/
+Disallow: /admin
+Disallow: /cart
+Disallow: /contact-success
+
+# Lithuanian equivalents
+Disallow: /lt/krepselis
+Disallow: /lt/kontaktai-sekmingai
+
+Sitemap: https://www.paulapango.com/sitemap.xml

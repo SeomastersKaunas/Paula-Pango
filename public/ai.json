@@ -1,0 +1,24 @@
+{
+  "name": "Paula Pango",
+  "domain": "https://www.paulapango.com",
+  "updated": "2026-06-11",
+  "defaultLocale": "en",
+  "locales": ["en", "lt-LT"],
+  "canonicalPolicy": "Use rel=canonical URL for primary reference",
+  "hreflangPolicy": "Use hreflang alternates for locale targeting",
+  "preferredPaths": [
+    "/",
+    "/gallery",
+    "/about",
+    "/contact",
+    "/blog"
+  ],
+  "excludedPrefixes": [
+    "/api/",
+    "/admin",
+    "/cart",
+    "/contact-success",
+    "/lt/krepselis",
+    "/lt/kontaktai-sekmingai"
+  ]
+}

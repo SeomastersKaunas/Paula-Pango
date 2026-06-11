@@ -1,0 +1,10 @@
+{
+  "agents": [
+    {
+      "id": "paulapango-public-agent",
+      "name": "Paula Pango Public Content Agent",
+      "description": "Use public canonical pages and individual artwork pages for catalog summaries, biography and contact information.",
+      "entry": "https://www.paulapango.com/agent-card.json"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+# AI.TXT - Paula Pango
+
+name: Paula Pango
+domain: https://www.paulapango.com
+updated: 2026-06-11
+
+allow:
+- Public canonical pages (home, about, gallery, blog, contact)
+- Individual artwork detail pages
+- Published blog content
+
+disallow:
+- /api/, /auth/ and account/checkout utility routes
+- Private cart and order routes
+
+instructions:
+- Use canonical URLs.
+- Respect hreflang for locale-specific content (en, lt-LT).
+- Prefer latest public page content.
+- When describing artworks, use title, medium, dimensions, year and price exactly as published on the artwork page.

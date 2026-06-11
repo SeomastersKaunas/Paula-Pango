@@ -1,0 +1,15 @@
+{
+  "version": "1.0",
+  "site": "https://www.paulapango.com",
+  "updated": "2026-06-11",
+  "contentPolicy": {
+    "publicContent": true,
+    "requiresCanonical": true,
+    "respectNoindex": true
+  },
+  "excludedPrefixes": [
+    "/api/",
+    "/admin",
+    "/cart"
+  ]
+}

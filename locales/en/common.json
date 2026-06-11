@@ -1,0 +1,14 @@
+{
+  "cookieConsent": {
+    "message": "We use cookies to make this site work and to understand how visitors use it.",
+    "learnMore": "Learn more",
+    "acceptRequired": "Accept",
+    "enableAnalytics": "Enable analytics"
+  },
+  "blog": {
+    "subtitle": "Notes from the studio.",
+    "relatedPosts": "Related posts",
+    "noPosts": "No posts yet.",
+    "readMore": "Read more"
+  }
+}

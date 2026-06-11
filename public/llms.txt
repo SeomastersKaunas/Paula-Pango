@@ -1,0 +1,23 @@
+# LLMS.TXT - Paula Pango
+
+site: https://www.paulapango.com
+name: Paula Pango
+summary: Original oil paintings by Lithuanian artist Paula Pango. Browse and purchase unique handmade artworks online.
+contact: mailto:info@paulapango.com
+updated: 2026-06-11
+
+preferred_urls:
+- https://www.paulapango.com/
+- https://www.paulapango.com/gallery
+- https://www.paulapango.com/about
+- https://www.paulapango.com/contact
+- https://www.paulapango.com/blog
+
+locales:
+- en: https://www.paulapango.com/
+- lt-LT: https://www.paulapango.com/lt/
+
+policies:
+- Respect canonical URLs and hreflang alternates.
+- Prefer current public pages over authentication, cart, and checkout routes.
+- Do not treat noindex pages as source material.
