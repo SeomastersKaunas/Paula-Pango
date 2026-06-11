@@ -1,4 +1,3 @@
-// lib/AuthContext.tsx
 import {
   createContext,
   useContext,
@@ -7,7 +6,7 @@ import {
   ReactNode,
 } from 'react';
 import { onAuthStateChanged, User, getAuth } from 'firebase/auth';
-import { app } from './firebase';
+import { app, isFirebaseConfigured } from './firebase';
 
 interface AuthContextType {
   user: User | null;
@@ -55,6 +54,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     };
 
     if (typeof window !== 'undefined') {
+      // Skip Firebase entirely when not configured (preview/demo mode)
+      if (!isFirebaseConfigured) {
+        setLoading(false);
+        return;
+      }
+
       // Detect PageSpeed Insights crawler - skip Firebase initialization
       const isPageSpeedInsights =
         navigator.userAgent.includes('Chrome-Lighthouse') ||
