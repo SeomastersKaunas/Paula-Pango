@@ -1,31 +1,19 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
 import { artworks } from '../lib/artworks';
 import { cormorant, jost } from '../lib/fonts';
 import { useLocalePath } from '../lib/useLocalePath';
 
-// Only landscape paintings for the hero slideshow
-const HERO_IDS = ['soul-mask', 'the-observer', 'reach', 'end-of-summer'];
 // Feature 3 paintings on the homepage
 const FEATURED_IDS = ['lady-with-an-ermine', 'soul-mask', 'anastasija'];
 
 export default function Home() {
   const { prefix, isLithuanian } = useLocalePath();
-  const [heroIdx, setHeroIdx] = useState(0);
 
-  const heroSlides = HERO_IDS.map((id) => artworks.find((a) => a.id === id)!).filter(Boolean);
   const featured = FEATURED_IDS.map((id) => artworks.find((a) => a.id === id)!).filter(Boolean);
-  const galleryHref = isLithuanian ? `${prefix}/galerija` : `${prefix}/gallery`;
+  const galleryHref = isLithuanian ? `${prefix}/parduotuve` : `${prefix}/shop`;
   const contactHref = isLithuanian ? `${prefix}/kontaktai` : `${prefix}/contact`;
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setHeroIdx((i) => (i + 1) % heroSlides.length);
-    }, 9000);
-    return () => clearInterval(interval);
-  }, [heroSlides.length]);
 
   const structuredData = {
     '@context': 'https://schema.org',
@@ -59,22 +47,17 @@ export default function Home() {
         className='relative w-screen overflow-hidden h-[70vh] md:h-[75vh] lg:h-[80vh] max-h-[760px]'
         style={{ marginLeft: 'calc(-50vw + 50%)', marginRight: 'calc(-50vw + 50%)', marginTop: '-1px' }}
       >
-        {heroSlides.map((slide, i) => (
-          <div
-            key={slide.id}
-            className='absolute inset-0 transition-opacity duration-[3000ms] ease-in-out'
-            style={{ opacity: i === heroIdx ? 1 : 0, zIndex: i === heroIdx ? 1 : 0 }}
-          >
-            <Image
-              src={slide.imageUrl}
-              alt={slide.title}
-              fill
-              priority={i === 0}
-              className='object-cover object-center'
-              sizes='100vw'
-            />
-          </div>
-        ))}
+        {/* Background video */}
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className='absolute inset-0 w-full h-full object-cover'
+        >
+          <source src='/paula_assets/video.mp4' type='video/mp4' />
+        </video>
+
         {/* Overlay */}
         <div className='absolute inset-0 bg-[#3e3232]/30 z-10' />
 
@@ -93,20 +76,8 @@ export default function Home() {
             href={galleryHref}
             className={`px-8 py-3 border border-white text-white text-xs uppercase tracking-[0.2em] hover:bg-white hover:text-primary transition-all duration-300 ${jost.className}`}
           >
-            {isLithuanian ? 'Peržiūrėti galeriją' : 'View Gallery'}
+            {isLithuanian ? 'Peržiūrėti parduotuvę' : 'View Shop'}
           </Link>
-        </div>
-
-        {/* Slide dots */}
-        <div className='absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex gap-2'>
-          {heroSlides.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setHeroIdx(i)}
-              aria-label={`Slide ${i + 1}`}
-              className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${i === heroIdx ? 'bg-white w-4' : 'bg-white/40'}`}
-            />
-          ))}
         </div>
       </section>
 
@@ -115,15 +86,10 @@ export default function Home() {
         <h2 className={`text-4xl md:text-5xl text-text mb-6 ${cormorant.className}`}>
           {isLithuanian ? 'Sveiki atvykę į Paula Pango studiją' : "Welcome to Paula Pango's Studio"}
         </h2>
-        <p className={`text-text-muted leading-relaxed text-base mb-4 ${jost.className}`}>
-          {isLithuanian
-            ? 'Čia rasite originalius aliejinės tapybos kūrinius — portretus, peizažus ir daugiau. Kiekvienas paveikslas yra unikalus ir neatkartojamaas.'
-            : 'Here you\'ll find original oil paintings — portraits, landscapes, and more. Each piece is unique, painted with intention and care in Kaunas, Lithuania.'}
-        </p>
         <p className={`text-text-muted leading-relaxed text-base ${jost.className}`}>
           {isLithuanian
-            ? 'Peržiūrėkite galeriją ir įsigykite originalų kūrinį, kuris papuoš jūsų namus.'
-            : 'Browse the gallery and bring home an original work of art.'}
+            ? 'Čia Paula dalijasi savo aliejinės tapybos kelione. Jos kūryba grindžiama realizmu, kruopščiu stebėjimu ir žavesiu subtiliomis emocijomis bei istorijomis, kurios atsiskleidžia per šviesą, formą ir išraišką.'
+            : 'This is where Paula shares her journey through oil painting. Her work is rooted in realism, careful observation, and a fascination with the subtle emotions and stories that emerge through light, form, and expression.'}
         </p>
       </section>
 
@@ -136,8 +102,8 @@ export default function Home() {
         <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
           {featured.map((artwork) => {
             const href = isLithuanian
-              ? `${prefix}/galerija/${artwork.slugLt}`
-              : `${prefix}/gallery/${artwork.slug}`;
+              ? `${prefix}/parduotuve/${artwork.slugLt}`
+              : `${prefix}/shop/${artwork.slug}`;
             return (
               <Link key={artwork.id} href={href} className='group block'>
                 <div className='overflow-hidden bg-surface aspect-[3/4] relative'>
@@ -172,7 +138,7 @@ export default function Home() {
             href={galleryHref}
             className={`inline-block px-10 py-3 border border-primary text-primary text-xs uppercase tracking-[0.2em] hover:bg-primary hover:text-white transition-all duration-300 ${jost.className}`}
           >
-            {isLithuanian ? 'Visa galerija' : 'All Paintings'}
+            {isLithuanian ? 'Visi paveikslai' : 'All Paintings'}
           </Link>
         </div>
       </section>
@@ -180,13 +146,22 @@ export default function Home() {
       {/* ── ARTIST STRIP ───────────────────────────────────── */}
       <section className='bg-surface py-16 px-6'>
         <div className='max-w-3xl mx-auto flex flex-col md:flex-row items-center gap-10 text-center md:text-left'>
-          <div className='shrink-0 w-40 h-40 relative rounded-full overflow-hidden border-2 border-secondary'>
+          <div
+            className='shrink-0 w-44 h-44 relative overflow-hidden rounded-2xl border border-secondary'
+            style={{
+              transform: 'perspective(600px) rotateY(12deg) rotateX(4deg)',
+              boxShadow: '6px 16px 40px rgba(62,50,50,0.22)',
+              transition: 'transform 0.4s ease',
+            }}
+            onMouseEnter={e => (e.currentTarget.style.transform = 'perspective(600px) rotateY(4deg) rotateX(2deg)')}
+            onMouseLeave={e => (e.currentTarget.style.transform = 'perspective(600px) rotateY(12deg) rotateX(4deg)')}
+          >
             <Image
-              src='/paula_assets/wetransfer_image_before_optimization/image00001.jpeg'
+              src='/paula_assets/about Paula Pango.jpeg'
               alt='Paula Pango'
               fill
               className='object-cover object-top'
-              sizes='160px'
+              sizes='176px'
             />
           </div>
           <div>

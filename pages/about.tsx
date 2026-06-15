@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-import { artworks } from '../lib/artworks';
 import { cormorant, jost } from '../lib/fonts';
 
 export default function About() {
@@ -18,7 +17,7 @@ export default function About() {
       {/* Hero image */}
       <div className='relative w-screen overflow-hidden' style={{ height: '200px', marginLeft: 'calc(-50vw + 50%)', marginRight: 'calc(-50vw + 50%)' }}>
         <Image
-          src={artworks[9].imageUrl}
+          src='/paula_assets/about Paula Pango.jpeg'
           alt='Paula Pango painting'
           fill
           priority
@@ -42,8 +41,8 @@ export default function About() {
           {/* Portrait */}
           <div className='relative aspect-[3/4] bg-surface overflow-hidden'>
             <Image
-              src={artworks[1].imageUrl}
-              alt='Paula Pango'
+              src='/paula_assets/about Paula Pango.jpeg'
+              alt='Paula Pango – artist photo'
               fill
               className='object-cover object-top'
               sizes='(max-width: 768px) 100vw, 50vw'
@@ -53,16 +52,19 @@ export default function About() {
           {/* Bio */}
           <div className='flex flex-col justify-center'>
             <h2 className={`text-4xl text-text mb-5 ${cormorant.className}`}>
-              Paula Pango
+              About
             </h2>
             <p className={`text-text-muted leading-relaxed text-sm mb-4 ${jost.className}`}>
-              Paula Pango is a Lithuanian oil painter based in Kaunas. Her work spans portraiture, landscapes, and imaginative compositions — all painted in oil on canvas with a focus on mood, character, and emotional depth.
+              Paula is a contemporary oil painter born and raised in Kaunas, Lithuania, where she completed her secondary education at an arts-focused school. Much of her artistic foundation was developed through years of independent practice, observation, and exploration in oil painting.
             </p>
             <p className={`text-text-muted leading-relaxed text-sm mb-4 ${jost.className}`}>
-              Each painting begins as an idea — an observation, a memory, or a feeling — and takes shape through careful layers of paint. Paula is drawn to the quiet power of a single gaze, the weight of light on a face, and the stories hidden in ordinary moments.
+              Working primarily in oil, she explores the relationship between realism, emotion, and visual storytelling through portraiture, figurative painting, still life, and studies from nature. Drawn to the richness and versatility of the medium, Paula seeks to balance technical precision with atmosphere and feeling, creating works that encourage reflection and connection.
+            </p>
+            <p className={`text-text-muted leading-relaxed text-sm mb-4 ${jost.className}`}>
+              Inspired by both classical masters and contemporary art, she is particularly interested in the expressive potential of light, form, and the human gaze. Her paintings range from carefully observed realistic works to more symbolic and conceptual compositions, united by a fascination with presence, character, and atmosphere.
             </p>
             <p className={`text-text-muted leading-relaxed text-sm ${jost.className}`}>
-              Her paintings are available as one-of-a-kind originals. She also accepts commissions for custom portraits.
+              Approaching painting as both a technical discipline and a means of exploration, Paula employs careful observation and layered techniques to create works that invite viewers to pause, reflect, and engage with the subject beyond its outward appearance.
             </p>
           </div>
         </div>
@@ -102,13 +104,13 @@ export default function About() {
           </div>
         </div>
 
-        {/* Gallery CTA */}
+        {/* Paintings CTA */}
         <div className='text-center mt-16'>
           <Link
-            href='/gallery'
+            href='/paintings'
             className={`inline-block px-10 py-3 border border-primary text-primary text-xs uppercase tracking-[0.2em] hover:bg-primary hover:text-white transition-all duration-300 ${jost.className}`}
           >
-            View Gallery
+            View Paintings
           </Link>
         </div>
       </div>

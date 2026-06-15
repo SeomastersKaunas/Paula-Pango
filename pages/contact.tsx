@@ -5,7 +5,7 @@ import { FaInstagram, FaFacebookF } from 'react-icons/fa';
 import { FiMail } from 'react-icons/fi';
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: '', clientEmail: '', message: '' });
+  const [form, setForm] = useState({ name: '', clientEmail: '', phone: '', subject: '', message: '' });
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
 
   async function handleSubmit(e: FormEvent) {
@@ -15,7 +15,7 @@ export default function Contact() {
       const res = await fetch('/api/submitForm', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...form, subject: 'Inquiry from paulapango.com' }),
+        body: JSON.stringify({ ...form, subject: form.subject || 'Inquiry from paulapango.com' }),
       });
       if (!res.ok) throw new Error('Failed');
       setStatus('sent');
@@ -74,19 +74,31 @@ export default function Contact() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className='space-y-5'>
-                <div>
-                  <label className={`block text-xs uppercase tracking-[0.15em] text-text-muted mb-1.5 ${jost.className}`}>Name</label>
-                  <input
-                    type='text'
-                    required
-                    value={form.name}
-                    onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    className={`w-full border border-border bg-transparent px-4 py-3 text-sm text-text focus:outline-none focus:border-primary transition-colors ${jost.className}`}
-                    placeholder='Your name'
-                  />
+                <div className='grid grid-cols-1 sm:grid-cols-2 gap-5'>
+                  <div>
+                    <label className={`block text-xs uppercase tracking-[0.15em] text-text-muted mb-1.5 ${jost.className}`}>Name *</label>
+                    <input
+                      type='text'
+                      required
+                      value={form.name}
+                      onChange={(e) => setForm({ ...form, name: e.target.value })}
+                      className={`w-full border border-border bg-transparent px-4 py-3 text-sm text-text focus:outline-none focus:border-primary transition-colors ${jost.className}`}
+                      placeholder='Your name'
+                    />
+                  </div>
+                  <div>
+                    <label className={`block text-xs uppercase tracking-[0.15em] text-text-muted mb-1.5 ${jost.className}`}>Phone</label>
+                    <input
+                      type='tel'
+                      value={form.phone}
+                      onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                      className={`w-full border border-border bg-transparent px-4 py-3 text-sm text-text focus:outline-none focus:border-primary transition-colors ${jost.className}`}
+                      placeholder='+370 600 00000'
+                    />
+                  </div>
                 </div>
                 <div>
-                  <label className={`block text-xs uppercase tracking-[0.15em] text-text-muted mb-1.5 ${jost.className}`}>Email</label>
+                  <label className={`block text-xs uppercase tracking-[0.15em] text-text-muted mb-1.5 ${jost.className}`}>Email *</label>
                   <input
                     type='email'
                     required
@@ -97,7 +109,21 @@ export default function Contact() {
                   />
                 </div>
                 <div>
-                  <label className={`block text-xs uppercase tracking-[0.15em] text-text-muted mb-1.5 ${jost.className}`}>Message</label>
+                  <label className={`block text-xs uppercase tracking-[0.15em] text-text-muted mb-1.5 ${jost.className}`}>Inquiry Type</label>
+                  <select
+                    value={form.subject}
+                    onChange={(e) => setForm({ ...form, subject: e.target.value })}
+                    className={`w-full border border-border bg-background px-4 py-3 text-sm text-text focus:outline-none focus:border-primary transition-colors ${jost.className}`}
+                  >
+                    <option value=''>Select a topic...</option>
+                    <option value='Purchase inquiry'>Purchase inquiry</option>
+                    <option value='Commission request'>Commission request</option>
+                    <option value='Shipping &amp; delivery'>Shipping &amp; delivery</option>
+                    <option value='General question'>General question</option>
+                  </select>
+                </div>
+                <div>
+                  <label className={`block text-xs uppercase tracking-[0.15em] text-text-muted mb-1.5 ${jost.className}`}>Message *</label>
                   <textarea
                     required
                     rows={5}

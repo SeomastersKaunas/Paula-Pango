@@ -81,16 +81,16 @@ export default function SEOHead({
     url: baseUrl + (isLithuanian ? '/lt/' : '/'),
     hasPart: isLithuanian
       ? [
-          { '@type': 'SiteNavigationElement', name: 'Galerija', url: `${baseUrl}/lt/galerija` },
+          { '@type': 'SiteNavigationElement', name: 'Parduotuvė', url: `${baseUrl}/lt/parduotuve` },
+          { '@type': 'SiteNavigationElement', name: 'Paveikslai', url: `${baseUrl}/lt/paveikslai` },
           { '@type': 'SiteNavigationElement', name: 'Apie', url: `${baseUrl}/lt/apie` },
           { '@type': 'SiteNavigationElement', name: 'Kontaktai', url: `${baseUrl}/lt/kontaktai` },
-          { '@type': 'SiteNavigationElement', name: 'Tinklaraštis', url: `${baseUrl}/lt/straipsniai` },
         ]
       : [
-          { '@type': 'SiteNavigationElement', name: 'Gallery', url: `${baseUrl}/gallery` },
+          { '@type': 'SiteNavigationElement', name: 'Shop', url: `${baseUrl}/shop` },
+          { '@type': 'SiteNavigationElement', name: 'Paintings', url: `${baseUrl}/paintings` },
           { '@type': 'SiteNavigationElement', name: 'About', url: `${baseUrl}/about` },
           { '@type': 'SiteNavigationElement', name: 'Contact', url: `${baseUrl}/contact` },
-          { '@type': 'SiteNavigationElement', name: 'Blog', url: `${baseUrl}/blog` },
         ],
   };
 

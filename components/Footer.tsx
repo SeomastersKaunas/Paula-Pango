@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { FaFacebookF, FaInstagram } from 'react-icons/fa';
 import { cormorant } from '../lib/fonts';
 import { useLocalePath } from '../lib/useLocalePath';
@@ -18,11 +19,11 @@ export default function Footer() {
   useEffect(() => { setYear(new Date().getFullYear()); }, []);
 
   const navLinks = [
-    { href: prefix || '/',                          label: isLt ? 'Pradžia'    : 'Home' },
-    { href: `${prefix}/gallery`,                    label: isLt ? 'Galerija'   : 'Gallery' },
-    { href: `${prefix}/about`,                      label: isLt ? 'Apie'       : 'About' },
-    { href: isLt ? `${prefix}/kontaktai` : `${prefix}/contact`, label: isLt ? 'Kontaktai' : 'Contact' },
-    { href: `${prefix}/blog`,                       label: isLt ? 'Tinklaraštis' : 'Blog' },
+    { href: prefix || '/',                                                  label: isLt ? 'Pradžia'     : 'Home' },
+    { href: isLt ? `${prefix}/parduotuve` : `${prefix}/shop`,              label: isLt ? 'Parduotuvė' : 'Shop' },
+    { href: isLt ? `${prefix}/paveikslai` : `${prefix}/paintings`,         label: isLt ? 'Paveikslai' : 'Paintings' },
+    { href: isLt ? `${prefix}/apie` : `${prefix}/about`,                   label: isLt ? 'Apie'       : 'About' },
+    { href: isLt ? `${prefix}/kontaktai` : `${prefix}/contact`,            label: isLt ? 'Kontaktai'  : 'Contact' },
     { href: isLt ? `${prefix}/sub/privatumo-politika` : `${prefix}/privacy-policy`, label: isLt ? 'Privatumas' : 'Privacy' },
   ];
 
@@ -31,8 +32,8 @@ export default function Footer() {
       <div className='max-w-4xl mx-auto flex flex-col items-center gap-8'>
 
         {/* Logo */}
-        <Link href={prefix || '/'} className={`text-2xl text-primary tracking-wide ${cormorant.className}`}>
-          Paula Pango
+        <Link href={prefix || '/'} className='flex flex-col items-center gap-2 hover:opacity-80 transition-opacity'>
+          <Image src='/paula_assets/logo_example.png' alt='Paula Pango' width={260} height={100} className='object-contain w-full max-w-[160px] md:max-w-[260px]' />
         </Link>
 
         {/* Social icons */}

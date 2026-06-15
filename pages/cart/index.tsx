@@ -43,7 +43,7 @@ export default function Cart() {
   const { prefix } = useLocalePath();
   const isLithuanian = router.asPath.startsWith('/lt');
   const isUS = router.asPath.startsWith('/us');
-  const galleryHref = isLithuanian ? '/lt/galerija' : '/gallery';
+  const galleryHref = isLithuanian ? '/lt/parduotuve' : '/shop';
   const contactHref = isLithuanian ? '/lt/kontaktai' : (prefix ? `${prefix}/contact` : '/contact');
   const currentCartPath =
     (router.asPath || '').split('#')[0] ||
@@ -291,11 +291,11 @@ export default function Cart() {
               {isLithuanian ? 'Krepšelis tuščias' : 'Your cart is empty'}
             </p>
             <p className={`text-sm text-[#9e8080] mb-8 ${jost.className}`}>
-              {isLithuanian ? 'Pridėkite paveikslų iš galerijos.' : 'Add paintings from the gallery.'}
+              {isLithuanian ? 'Pridėkite paveikslų iš parduotuvės.' : 'Add paintings from the shop.'}
             </p>
-            <Link href={isLithuanian ? '/lt/galerija' : '/gallery'}
+            <Link href={isLithuanian ? '/lt/parduotuve' : '/shop'}
               className={`px-8 py-3 bg-[#7b5d5d] text-white text-xs uppercase tracking-[0.2em] hover:bg-[#6a4f4f] transition-colors ${jost.className}`}>
-              {isLithuanian ? 'Žiūrėti galeriją' : 'View Gallery'}
+              {isLithuanian ? 'Žiūrėti parduotuvę' : 'View Shop'}
             </Link>
           </div>
         ) : (
@@ -357,7 +357,7 @@ export default function Cart() {
 
               {/* Continue shopping */}
               <div className='mt-8 pt-6 border-t border-[#e4d4d4]'>
-                <Link href={isLithuanian ? '/lt/galerija' : '/gallery'}
+                <Link href={isLithuanian ? '/lt/parduotuve' : '/shop'}
                   className={`text-sm text-[#9e8080] hover:text-[#7b5d5d] transition-colors ${jost.className}`}>
                   ← {isLithuanian ? 'Tęsti apsipirkimą' : 'Continue shopping'}
                 </Link>

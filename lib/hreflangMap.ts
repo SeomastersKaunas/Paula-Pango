@@ -14,17 +14,17 @@ export interface HreflangTag {
  * Static page mapping: canonical EN path -> { en, lt }
  */
 const STATIC_MAP: Record<string, { en: string; lt: string }> = {
-  '/':            { en: '/',                     lt: '/lt/' },
-  '/lt/':         { en: '/',                     lt: '/lt/' },
-  '/gallery':     { en: '/gallery',              lt: '/lt/galerija' },
-  '/lt/galerija': { en: '/gallery',              lt: '/lt/galerija' },
-  '/about':       { en: '/about',                lt: '/lt/apie' },
-  '/lt/apie':     { en: '/about',                lt: '/lt/apie' },
-  '/contact':     { en: '/contact',              lt: '/lt/kontaktai' },
-  '/lt/kontaktai':{ en: '/contact',              lt: '/lt/kontaktai' },
-  '/blog':        { en: '/blog',                 lt: '/lt/straipsniai' },
-  '/lt/straipsniai': { en: '/blog',              lt: '/lt/straipsniai' },
-  '/privacy-policy': { en: '/privacy-policy',   lt: '/lt/sub/privatumo-politika' },
+  '/':                  { en: '/',              lt: '/lt/' },
+  '/lt/':               { en: '/',              lt: '/lt/' },
+  '/shop':              { en: '/shop',          lt: '/lt/parduotuve' },
+  '/lt/parduotuve':     { en: '/shop',          lt: '/lt/parduotuve' },
+  '/paintings':         { en: '/paintings',     lt: '/lt/paveikslai' },
+  '/lt/paveikslai':     { en: '/paintings',     lt: '/lt/paveikslai' },
+  '/about':             { en: '/about',         lt: '/lt/apie' },
+  '/lt/apie':           { en: '/about',         lt: '/lt/apie' },
+  '/contact':           { en: '/contact',       lt: '/lt/kontaktai' },
+  '/lt/kontaktai':      { en: '/contact',       lt: '/lt/kontaktai' },
+  '/privacy-policy':    { en: '/privacy-policy', lt: '/lt/sub/privatumo-politika' },
   '/lt/sub/privatumo-politika': { en: '/privacy-policy', lt: '/lt/sub/privatumo-politika' },
 };
 
@@ -44,14 +44,14 @@ export function buildHreflangTags(path: string): HreflangTag[] {
 }
 
 /**
- * Build hreflang tags for dynamic gallery/artwork pages.
+ * Build hreflang tags for dynamic shop/artwork pages.
  */
 export function buildArtworkHreflangTags(slug: string, slugLt?: string): HreflangTag[] {
   const lt = slugLt || slug;
   return [
-    { hreflang: 'en',       href: `${BASE_URL}/gallery/${slug}` },
-    { hreflang: 'lt-LT',    href: `${BASE_URL}/lt/galerija/${lt}` },
-    { hreflang: 'x-default',href: `${BASE_URL}/gallery/${slug}` },
+    { hreflang: 'en',       href: `${BASE_URL}/shop/${slug}` },
+    { hreflang: 'lt-LT',    href: `${BASE_URL}/lt/parduotuve/${lt}` },
+    { hreflang: 'x-default',href: `${BASE_URL}/shop/${slug}` },
   ];
 }
 

@@ -14,14 +14,14 @@ const toHreflangXml = (tags: Array<{ hreflang: string; href: string }>) =>
 const STATIC_PAGES: Array<[string, number]> = [
   ['/', 1.0],
   ['/lt/', 1.0],
-  ['/gallery', 0.9],
-  ['/lt/galerija', 0.9],
+  ['/shop', 0.9],
+  ['/lt/parduotuve', 0.9],
+  ['/paintings', 0.8],
+  ['/lt/paveikslai', 0.8],
   ['/about', 0.7],
   ['/lt/apie', 0.7],
   ['/contact', 0.7],
   ['/lt/kontaktai', 0.7],
-  ['/blog', 0.6],
-  ['/lt/straipsniai', 0.6],
   ['/privacy-policy', 0.4],
   ['/lt/sub/privatumo-politika', 0.4],
   ['/sub/faq', 0.4],
@@ -66,25 +66,24 @@ ${hreflang}
     })
     .join('\n\n');
 
-  // Artwork detail pages: /gallery/[slug] (EN) + /lt/galerija/[slug] (LT)
+  // Artwork detail pages: /shop/[slug] (EN) + /lt/parduotuve/[slug] (LT)
   const artworkXml = artworks
     .flatMap((a) => {
       const lt = a.slugLt || a.slug;
-      // Hreflang for an artwork pair
       const hreflang = toHreflangXml([
-        { hreflang: 'en', href: `${BASE_URL}/gallery/${a.slug}` },
-        { hreflang: 'lt-LT', href: `${BASE_URL}/lt/galerija/${lt}` },
-        { hreflang: 'x-default', href: `${BASE_URL}/gallery/${a.slug}` },
+        { hreflang: 'en', href: `${BASE_URL}/shop/${a.slug}` },
+        { hreflang: 'lt-LT', href: `${BASE_URL}/lt/parduotuve/${lt}` },
+        { hreflang: 'x-default', href: `${BASE_URL}/shop/${a.slug}` },
       ]);
       return [
         `  <url>
-    <loc>${BASE_URL}/gallery/${a.slug}</loc>
+    <loc>${BASE_URL}/shop/${a.slug}</loc>
     <lastmod>${lastmod}</lastmod>
     <priority>0.8</priority>
 ${hreflang}
   </url>`,
         `  <url>
-    <loc>${BASE_URL}/lt/galerija/${lt}</loc>
+    <loc>${BASE_URL}/lt/parduotuve/${lt}</loc>
     <lastmod>${lastmod}</lastmod>
     <priority>0.8</priority>
 ${hreflang}
@@ -93,7 +92,7 @@ ${hreflang}
     })
     .join('\n\n');
 
-  const allEntries = [staticXml, artworkXml, blogXml].filter(Boolean).join('\n\n');
+  const allEntries = [staticXml, artworkXml].filter(Boolean).join('\n\n');
 
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"

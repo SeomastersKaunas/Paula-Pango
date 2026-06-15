@@ -7,7 +7,7 @@ import { cormorant, jost } from '../lib/fonts';
 export default function Success() {
   const router = useRouter();
   const isLithuanian = (router.asPath || '').startsWith('/lt');
-  const galleryHref = isLithuanian ? '/lt/galerija' : '/gallery';
+  const galleryHref = isLithuanian ? '/lt/parduotuve' : '/shop';
 
   return (
     <div className='flex items-center justify-center min-h-screen px-4 bg-[#fdfbf9]'>
@@ -46,7 +46,7 @@ export default function Success() {
           href={galleryHref}
           className={`inline-block px-8 py-3 bg-[#7b5d5d] text-white text-xs uppercase tracking-[0.2em] hover:bg-[#6a4f4f] transition-colors ${jost.className}`}
         >
-          {isLithuanian ? 'Atgal į galeriją' : 'Back to gallery'}
+          {isLithuanian ? 'Atgal į parduotuvę' : 'Back to shop'}
         </Link>
       </div>
     </div>

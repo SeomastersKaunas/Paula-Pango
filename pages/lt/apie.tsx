@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-import { artworks } from '../../lib/artworks';
 import { cormorant, jost } from '../../lib/fonts';
 
 export default function Apie() {
@@ -17,7 +16,7 @@ export default function Apie() {
 
       <div className='relative w-screen overflow-hidden' style={{ height: '200px', marginLeft: 'calc(-50vw + 50%)', marginRight: 'calc(-50vw + 50%)' }}>
         <Image
-          src={artworks[9].imageUrl}
+          src='/paula_assets/about Paula Pango.jpeg'
           alt='Paula Pango tapyba'
           fill
           priority
@@ -39,8 +38,8 @@ export default function Apie() {
         <div className='grid grid-cols-1 md:grid-cols-2 gap-12 items-start mb-20'>
           <div className='relative aspect-[3/4] bg-surface overflow-hidden'>
             <Image
-              src={artworks[1].imageUrl}
-              alt='Paula Pango'
+              src='/paula_assets/about Paula Pango.jpeg'
+              alt='Paula Pango – artist photo'
               fill
               className='object-cover object-top'
               sizes='(max-width: 768px) 100vw, 50vw'
@@ -49,16 +48,19 @@ export default function Apie() {
 
           <div className='flex flex-col justify-center'>
             <h2 className={`text-4xl text-text mb-5 ${cormorant.className}`}>
-              Paula Pango
+              Apie
             </h2>
             <p className={`text-text-muted leading-relaxed text-sm mb-4 ${jost.className}`}>
-              Paula Pango — lietuvių dailininkė iš Kauno. Jos kūryboje dominuoja portretai, peizažai ir vaizduotės kompozicijos — viskas tapoma aliejiniais dažais ant drobės, akcentuojant nuotaiką, charakterį ir emocinį gilumą.
+              Paula — šiuolaikinė aliejinės tapybos dailininkė, gimusi ir užaugusi Kaune, Lietuvoje, kur baigė vidurinį išsilavinimą meno krypties mokykloje. Didžioji dalis jos meninio pagrindo susiformavo per ilgus metus savarankiškos praktikos, stebėjimo ir tyrinėjimo aliejinėje tapyboje.
             </p>
             <p className={`text-text-muted leading-relaxed text-sm mb-4 ${jost.className}`}>
-              Kiekvienas paveikslas prasideda nuo idėjos — pastebėjimo, atminimo ar jausmo — ir formuojasi per kruopščius dažų sluoksnius. Paula traukia tylinga vieno žvilgsnio jėga, šviesos svoris ant veido ir paprastuose momentuose paslėptos istorijos.
+              Dirbdama daugiausia aliejaus technika, ji tiria realizmo, emocijų ir vizualinio pasakojimo santykį per portretą, figūrinę tapybą, natiurmortą ir studijas iš gamtos. Paulą traukia medžiagos turtingumas ir universalumas — ji siekia suderinti techninį tikslumą su atmosfera ir jausmu, kurdama darbus, skatinančius apmąstymus ir ryšį.
+            </p>
+            <p className={`text-text-muted leading-relaxed text-sm mb-4 ${jost.className}`}>
+              Įkvėpta tiek klasikinių meistrų, tiek šiuolaikinio meno, ji ypač domisi išraiškingu šviesos, formos ir žmogaus žvilgsnio potencialu. Jos paveikslai svyruoja nuo kruopščiai stebimų realistinių darbų iki simboliškesnių ir konceptualesnių kompozicijų, vienijamų žavėjimosi buvimu, charakteriu ir atmosfera.
             </p>
             <p className={`text-text-muted leading-relaxed text-sm ${jost.className}`}>
-              Jos paveikslai parduodami kaip vieninteliai originalai. Ji taip pat priima užsakymus individualiems portretams.
+              Tapybą traktuodama ir kaip techninę discipliną, ir kaip tyrinėjimo priemonę, Paula naudoja kruopštų stebėjimą ir sluoksniavimo technikas, kurdama darbus, kurie kviečia žiūrovus sustoti, apmąstyti ir įsitraukti į temą giliau nei išorinis jos pasirodymas.
             </p>
           </div>
         </div>
@@ -91,10 +93,10 @@ export default function Apie() {
 
         <div className='text-center mt-16'>
           <Link
-            href='/lt/galerija'
+            href='/lt/paveikslai'
             className={`inline-block px-10 py-3 border border-primary text-primary text-xs uppercase tracking-[0.2em] hover:bg-primary hover:text-white transition-all duration-300 ${jost.className}`}
           >
-            Peržiūrėti galeriją
+            Peržiūrėti paveikslus
           </Link>
         </div>
       </div>

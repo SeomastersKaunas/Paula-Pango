@@ -5,7 +5,7 @@ import { FaInstagram, FaFacebookF } from 'react-icons/fa';
 import { FiMail } from 'react-icons/fi';
 
 export default function Kontaktai() {
-  const [form, setForm] = useState({ name: '', clientEmail: '', message: '' });
+  const [form, setForm] = useState({ name: '', clientEmail: '', phone: '', subject: '', message: '' });
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
 
   async function handleSubmit(e: FormEvent) {
@@ -15,7 +15,7 @@ export default function Kontaktai() {
       const res = await fetch('/api/submitForm', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...form, subject: 'Užklausa iš paulapango.com' }),
+        body: JSON.stringify({ ...form, subject: form.subject || 'Užklausa iš paulapango.com' }),
       });
       if (!res.ok) throw new Error('Failed');
       setStatus('sent');
@@ -74,18 +74,36 @@ export default function Kontaktai() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className='space-y-5'>
-                <div>
-                  <label className={`block text-xs uppercase tracking-[0.15em] text-text-muted mb-1.5 ${jost.className}`}>Vardas</label>
-                  <input type='text' required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    className={`w-full border border-border bg-transparent px-4 py-3 text-sm text-text focus:outline-none focus:border-primary transition-colors ${jost.className}`} placeholder='Jūsų vardas' />
+                <div className='grid grid-cols-1 sm:grid-cols-2 gap-5'>
+                  <div>
+                    <label className={`block text-xs uppercase tracking-[0.15em] text-text-muted mb-1.5 ${jost.className}`}>Vardas *</label>
+                    <input type='text' required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })}
+                      className={`w-full border border-border bg-transparent px-4 py-3 text-sm text-text focus:outline-none focus:border-primary transition-colors ${jost.className}`} placeholder='Jūsų vardas' />
+                  </div>
+                  <div>
+                    <label className={`block text-xs uppercase tracking-[0.15em] text-text-muted mb-1.5 ${jost.className}`}>Telefonas</label>
+                    <input type='tel' value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                      className={`w-full border border-border bg-transparent px-4 py-3 text-sm text-text focus:outline-none focus:border-primary transition-colors ${jost.className}`} placeholder='+370 600 00000' />
+                  </div>
                 </div>
                 <div>
-                  <label className={`block text-xs uppercase tracking-[0.15em] text-text-muted mb-1.5 ${jost.className}`}>El. paštas</label>
+                  <label className={`block text-xs uppercase tracking-[0.15em] text-text-muted mb-1.5 ${jost.className}`}>El. paštas *</label>
                   <input type='email' required value={form.clientEmail} onChange={(e) => setForm({ ...form, clientEmail: e.target.value })}
                     className={`w-full border border-border bg-transparent px-4 py-3 text-sm text-text focus:outline-none focus:border-primary transition-colors ${jost.className}`} placeholder='jusu@epastas.lt' />
                 </div>
                 <div>
-                  <label className={`block text-xs uppercase tracking-[0.15em] text-text-muted mb-1.5 ${jost.className}`}>Žinutė</label>
+                  <label className={`block text-xs uppercase tracking-[0.15em] text-text-muted mb-1.5 ${jost.className}`}>Užklausos tema</label>
+                  <select value={form.subject} onChange={(e) => setForm({ ...form, subject: e.target.value })}
+                    className={`w-full border border-border bg-background px-4 py-3 text-sm text-text focus:outline-none focus:border-primary transition-colors ${jost.className}`}>
+                    <option value=''>Pasirinkite temą...</option>
+                    <option value='Pirkimo užklausa'>Pirkimo užklausa</option>
+                    <option value='Individualus užsakymas'>Individualus užsakymas</option>
+                    <option value='Pristatymas'>Pristatymas</option>
+                    <option value='Kitas klausimas'>Kitas klausimas</option>
+                  </select>
+                </div>
+                <div>
+                  <label className={`block text-xs uppercase tracking-[0.15em] text-text-muted mb-1.5 ${jost.className}`}>Žinutė *</label>
                   <textarea required rows={5} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })}
                     className={`w-full border border-border bg-transparent px-4 py-3 text-sm text-text focus:outline-none focus:border-primary transition-colors resize-none ${jost.className}`} placeholder='Mane domina...' />
                 </div>

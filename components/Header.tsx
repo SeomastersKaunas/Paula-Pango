@@ -49,11 +49,11 @@ export default function Header() {
   const totalItems = cartProducts.reduce((sum, p) => sum + (p.quantity || 1), 0);
 
   const navLinks = [
-    { href: prefix || '/',                                          label: isLt ? 'Pradžia'    : 'Home' },
-    { href: `${prefix}/gallery`,                                    label: isLt ? 'Galerija'   : 'Gallery' },
-    { href: `${prefix}/about`,                                      label: isLt ? 'Apie'       : 'About' },
-    { href: isLt ? `${prefix}/kontaktai` : `${prefix}/contact`,    label: isLt ? 'Kontaktai'  : 'Contact' },
-    { href: `${prefix}/blog`,                                       label: isLt ? 'Tinklaraštis' : 'Blog' },
+    { href: prefix || '/',                                                    label: isLt ? 'Pradžia'      : 'Home' },
+    { href: isLt ? `${prefix}/parduotuve` : `${prefix}/shop`,                label: isLt ? 'Parduotuvė'  : 'Shop' },
+    { href: isLt ? `${prefix}/paveikslai` : `${prefix}/paintings`,           label: isLt ? 'Paveikslai'  : 'Paintings' },
+    { href: isLt ? `${prefix}/apie` : `${prefix}/about`,                     label: isLt ? 'Apie'        : 'About' },
+    { href: isLt ? `${prefix}/kontaktai` : `${prefix}/contact`,              label: isLt ? 'Kontaktai'   : 'Contact' },
   ];
 
   // Close mobile nav on outside click
@@ -73,7 +73,7 @@ export default function Header() {
   }, [router.asPath]);
 
   return (
-    <header className='w-full bg-background border-b border-border sticky top-0 z-50'>
+    <header ref={mobileRef} className='w-full bg-background border-b border-border sticky top-0 z-50'>
       <div className='max-w-6xl mx-auto px-6'>
 
         {/* Desktop layout: logo left, name+nav centered, cart/auth right */}
@@ -81,7 +81,7 @@ export default function Header() {
 
           {/* Left — logo */}
           <Link href={prefix || '/'} className='hover:opacity-80 transition-opacity duration-200 shrink-0'>
-            <Image src='/logo_paula_example.png' alt='Paula Pango' width={36} height={36} className='rounded-lg object-contain' priority />
+            <Image src='/paula_assets/logo_example.png' alt='Paula Pango' width={240} height={56} className='object-contain max-h-14' priority />
           </Link>
 
           {/* Center — name + nav */}
@@ -135,11 +135,11 @@ export default function Header() {
             className='hover:opacity-80 transition-opacity duration-200'
           >
             <Image
-              src='/logo_paula_example.png'
+              src='/paula_assets/logo_example.png'
               alt='Paula Pango'
-              width={60}
-              height={22}
-              className='rounded-lg object-contain'
+              width={160}
+              height={40}
+              className='object-contain max-h-10'
             />
           </Link>
 
@@ -151,7 +151,7 @@ export default function Header() {
 
       {/* Mobile nav drawer */}
       {mobileOpen && (
-        <div ref={mobileRef} className='md:hidden border-t border-border bg-background px-6 py-6 flex flex-col gap-5'>
+        <div className='md:hidden border-t border-border bg-background px-6 py-6 flex flex-col gap-5'>
           {navLinks.map(({ href, label }) => (
             <Link
               key={href}

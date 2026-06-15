@@ -32,10 +32,10 @@ const urlMapping: Record<string, { en: string; lt: string }> = {
   '/lt/': { en: '/', lt: '/lt/' },
   '/about': { en: '/about', lt: '/lt/apie' },
   '/lt/apie': { en: '/about', lt: '/lt/apie' },
-  '/gallery': { en: '/gallery', lt: '/lt/galerija' },
-  '/lt/galerija': { en: '/gallery', lt: '/lt/galerija' },
-  '/blog': { en: '/blog', lt: '/lt/straipsniai' },
-  '/lt/straipsniai': { en: '/blog', lt: '/lt/straipsniai' },
+  '/shop': { en: '/shop', lt: '/lt/parduotuve' },
+  '/lt/parduotuve': { en: '/shop', lt: '/lt/parduotuve' },
+  '/paintings': { en: '/paintings', lt: '/lt/paveikslai' },
+  '/lt/paveikslai': { en: '/paintings', lt: '/lt/paveikslai' },
   '/contact': { en: '/contact', lt: '/lt/kontaktai' },
   '/lt/kontaktai': { en: '/contact', lt: '/lt/kontaktai' },
   '/contact-success': { en: '/contact-success', lt: '/lt/kontaktai-sekmingai' },
@@ -64,24 +64,24 @@ export function getAlternateUrl(currentPath: string, targetLocale: LocaleOption)
     return mapping[targetLocale];
   }
 
-  // Dynamic gallery slugs: /gallery/[slug] <-> /lt/galerija/[slug]
+  // Dynamic shop slugs: /shop/[slug] <-> /lt/parduotuve/[slug]
+  if (normalized.startsWith('/lt/parduotuve/')) {
+    const slug = normalized.replace('/lt/parduotuve', '');
+    return targetLocale === 'en' ? `/shop${slug}` : `/lt/parduotuve${slug}`;
+  }
+  if (normalized.startsWith('/shop/')) {
+    const slug = normalized.replace('/shop', '');
+    return targetLocale === 'lt' ? `/lt/parduotuve${slug}` : `/shop${slug}`;
+  }
+
+  // Legacy gallery redirects (in case someone lands on old URL before redirect fires)
   if (normalized.startsWith('/lt/galerija/')) {
     const slug = normalized.replace('/lt/galerija', '');
-    return targetLocale === 'en' ? `/gallery${slug}` : `/lt/galerija${slug}`;
+    return targetLocale === 'en' ? `/shop${slug}` : `/lt/parduotuve${slug}`;
   }
   if (normalized.startsWith('/gallery/')) {
     const slug = normalized.replace('/gallery', '');
-    return targetLocale === 'lt' ? `/lt/galerija${slug}` : `/gallery${slug}`;
-  }
-
-  // Dynamic blog slugs: /blog/[slug] <-> /lt/straipsniai/[slug]
-  if (normalized.startsWith('/lt/straipsniai/')) {
-    const slug = normalized.replace('/lt/straipsniai', '');
-    return targetLocale === 'en' ? `/blog${slug}` : `/lt/straipsniai${slug}`;
-  }
-  if (normalized.startsWith('/blog/')) {
-    const slug = normalized.replace('/blog', '');
-    return targetLocale === 'lt' ? `/lt/straipsniai${slug}` : `/blog${slug}`;
+    return targetLocale === 'lt' ? `/lt/parduotuve${slug}` : `/shop${slug}`;
   }
 
   // Fallback: strip /lt prefix or add it

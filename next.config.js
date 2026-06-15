@@ -82,6 +82,10 @@ const nextConfig = {
       { source: '/lt/en', destination: '/lt', permanent: true },
       { source: '/en/lt', destination: '/lt', permanent: true },
       { source: '/sitemap', destination: '/sitemap.xml', permanent: true },
+      { source: '/gallery', destination: '/shop', permanent: true },
+      { source: '/gallery/:slug', destination: '/shop/:slug', permanent: true },
+      { source: '/lt/galerija', destination: '/lt/parduotuve', permanent: true },
+      { source: '/lt/galerija/:slug', destination: '/lt/parduotuve/:slug', permanent: true },
     ];
   },
   // Proxy Firebase auth links so /__/auth/* on our domain hits Firebase.
